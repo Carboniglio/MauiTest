@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiTest.LoginPage"
+             Title="LoginPage">
+    <VerticalStackLayout>
+        <Image
+            Source="login.png"
+             HeightRequest="185"
+             Aspect="AspectFit"
+            
+           />
+        <Entry
+            x:Name="Username"
+            Placeholder="{Binding Placeholder }" 
+            
+            />
+        <Entry
+            x:Name="Password"
+            IsPassword="true"
+            
+            />
+        <HorizontalStackLayout Spacing="10" Padding="10">
+            
+        <CheckBox
+             x:Name="isUsernameSaved"
+            IsChecked="{Binding IsUsernameRemembered}"
+      />
+        
+        <Label Text="Ricorda codice utente"
+         FontSize="17"
+          FontAttributes="Bold"
+               />
+        </HorizontalStackLayout>
+
+        <Button
+        x:Name="LoginConfirm"
+        Text="Login"  
+        Clicked="OnLoginClicked"
+        HorizontalOptions="Center"
+            />
+
+
+    </VerticalStackLayout>
+</ContentPage>

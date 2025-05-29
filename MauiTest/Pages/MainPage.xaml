@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiTest.MainPage"
+            >
+
+    <ScrollView>
+        <VerticalStackLayout
+     Padding="30,0"
+     Spacing="25">
+
+            <Image
+         x:Name="TopImage"
+         Source="dotnet_bot.png"
+         HeightRequest="185"
+         Aspect="AspectFit"
+         SemanticProperties.Description="dot net bot in a race car number eight" />
+
+            <Label
+         Text="Hello, World!"
+         Style="{StaticResource Headline}"
+         SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+         Text="Welcome to &#10;.NET Multi-platform App UI"
+         Style="{StaticResource SubHeadline}"
+         SemanticProperties.HeadingLevel="Level2"
+         SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+
+            <Button
+         x:Name="CameraBtn"
+         Text="CameraTest Test "  
+         Clicked="OnChangeCameraPageClicked"
+         HorizontalOptions="Fill" />
+            <Button
+         x:Name="CardBtn"
+         Text="Search for a card "  
+         Clicked="OnSearchCardClicked"
+         HorizontalOptions="Fill" />
+            <Button
+         x:Name="LoginBtn"
+         Text="Login Test "  
+         Clicked="OnChangeLoginPageClicked"
+         HorizontalOptions="Fill" />
+            <Button
+         x:Name="TestBtn"
+         Text="Click me" 
+         Clicked="TestClicked"
+         HorizontalOptions="Fill" />
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

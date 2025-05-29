@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiTest.ConfirmPage"
+             Title="NewPage1">
+    <VerticalStackLayout>
+        <Label 
+            Text="This is the confirm page"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Image
+            x:Name="PhotoPreview"
+            Aspect="AspectFit"
+            WidthRequest="300"
+            HeightRequest="500"
+            />
+
+        <Button
+            Text="Confirm"
+            Clicked="ConfirmClicked"
+            />
+
+        <Button
+            Text="Retry"
+            Clicked="RetryClicked"
+            />        
+    </VerticalStackLayout>
+</ContentPage>
