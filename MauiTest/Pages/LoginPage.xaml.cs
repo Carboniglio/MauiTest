@@ -24,7 +24,7 @@ public partial class LoginPage : ContentPage
         if (isUsernameSaved.IsChecked)
         {
             
-            DataManager.SavePreference(DataManagerKeys.Username.ToString(), Username.Text.ToString());
+            DataManager.SavePreference(DataManagerKeys.Username, Username.Text.ToString());
         }
 
         //add here password check with database API

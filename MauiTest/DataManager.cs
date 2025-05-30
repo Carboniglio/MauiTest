@@ -17,29 +17,29 @@ namespace MauiTest
 
     }
 
-        
+
     internal static class DataManager
     {
-        public static  Dictionary<string, string> FilePaths;
+        public static Dictionary<string, string> FilePaths;
         public static List<string> CardNames;
 
-        public static void Initialize ()
+        public static void Initialize()
         {
             FilePaths = new Dictionary<string, string>();
             CardNames = new List<string>();
         }
 
-        public static void SaveCardName( string value)
+        public static void SaveCardName(string value)
         {
-           CardNames.Add(value);
+            CardNames.Add(value);
         }
-        public static void DeleteCardName( string value)
+        public static void DeleteCardName(string value)
         {
-           CardNames.Remove(value);
+            CardNames.Remove(value);
         }
 
 
-        public static void SaveDataPath(string key , string value)
+        public static void SaveDataPath(string key, string value)
         {
             FilePaths.Add(key, value);
         }
@@ -49,16 +49,18 @@ namespace MauiTest
             return FilePaths[key];
         }
 
-        public static void DeleteDataPath(string key) 
-            {
-                FilePaths.Remove(key);
-            }
+        public static void DeleteDataPath(string key)
+        {
+            FilePaths.Remove(key);
+        }
 
 
         //use this to save settings 
-        public static void SavePreference<T>(string key , T value)
+        public static void SavePreference<T>(Enum dataManagerKey, T value)
         {
-            switch(value)
+            string key = dataManagerKey.ToString();
+
+            switch (value)
             {
                 case string s:
                     Preferences.Set(key, s);
@@ -71,38 +73,40 @@ namespace MauiTest
                 case float f:
                     Preferences.Set(key, f);
                     break;
-                case bool b :
+                case bool b:
                     Preferences.Set(key, b);
                     break;
-                
+
             }
-               
-            
+
+
         }
 
-        public static T LoadPreference<T>(string key )
+        public static T LoadPreference<T>(Enum dataManagerKey)
         {
+            string key = dataManagerKey.ToString();
+
             var type = typeof(T);
-            if (type == typeof(string)) 
+            if (type == typeof(string))
                 return (T)(object)Preferences.Get(key, string.Empty);
             if (type == typeof(int))
-                return (T)(object)Preferences.Get(key,0);
+                return (T)(object)Preferences.Get(key, 0);
             if (type == typeof(float))
                 return (T)(object)Preferences.Get(key, 0.0f);
             if (type == typeof(bool))
-                return (T)(object)Preferences.Get(key,false);
+                return (T)(object)Preferences.Get(key, false);
 
             return default;
 
         }
 
         //use this to save sensible data (username , password , api key  etc ) 
-        public static void SaveSecureStorage(string key ,string  value)
+        public static void SaveSecureStorage(string key, string value)
         {
-         SecureStorage.SetAsync(key, value).Wait();
+            SecureStorage.SetAsync(key, value).Wait();
 
         }
-        public static async Task<string?>  LoadSecureStorage(string key)
+        public static async Task<string?> LoadSecureStorage(string key)
         {
             string? value = await SecureStorage.GetAsync(key);
             return value;
