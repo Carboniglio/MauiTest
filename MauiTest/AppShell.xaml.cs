@@ -8,8 +8,9 @@ namespace MauiTest
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(CameraPage), typeof(CameraPage));
-            Routing.RegisterRoute(nameof(CardShower), typeof(CardShower));
+            Routing.RegisterRoute(nameof(CardSearcher), typeof(CardSearcher));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(CardShower), typeof(CardShower));
         }
     }
 }

@@ -46,6 +46,11 @@ namespace MauiTest
 
         private async void OnSearchCardClicked(object sender, EventArgs e)
         {
+            await Shell.Current.GoToAsync("CardSearcher");
+        }
+
+        private async void ShowCardsClicked(object sender, EventArgs e)
+        {
             await Shell.Current.GoToAsync("CardShower");
         }
     }

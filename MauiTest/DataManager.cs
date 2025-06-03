@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace MauiTest
 {
@@ -21,24 +22,63 @@ namespace MauiTest
     internal static class DataManager
     {
         public static Dictionary<string, string> FilePaths;
-        public static List<string> CardNames;
+        public static List<CardInfo> SavedCards;
+        private static readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, "saved_cards.json");
 
-        public static void Initialize()
+        public static async  void Initialize()
         {
+            SavedCards = new List<CardInfo>();
             FilePaths = new Dictionary<string, string>();
-            CardNames = new List<string>();
+            await SavedCardsListFiller();
         }
 
-        public static void SaveCardName(string value)
+        #region card saver data
+        public static async Task SaveCardListToJsonAsync(List<CardInfo> cards)
         {
-            CardNames.Add(value);
+            string json = JsonSerializer.Serialize(cards);
+            await File.WriteAllTextAsync(filePath, json);
         }
-        public static void DeleteCardName(string value)
+
+        public static async Task<List<CardInfo>> LoadCardsFromJsonAsync()
         {
-            CardNames.Remove(value);
+            if (!File.Exists(filePath))
+                return new List<CardInfo>();
+
+            string json = await File.ReadAllTextAsync(filePath);
+            return JsonSerializer.Deserialize<List<CardInfo>>(json) ?? new List<CardInfo>();
         }
 
+        public static async Task SavedCardsListFiller()
+        {
 
+            if (File.Exists(filePath))
+            {
+                var cards = await LoadCardsFromJsonAsync();
+                SavedCards.Clear();
+                foreach (var card in cards)
+                    SavedCards.Add(card);
+
+            }
+            else
+                return;
+
+        }
+
+        public static async Task SaveCardsAsync( CardInfo card)
+        {
+            SavedCards.Add(card);
+            await SaveCardListToJsonAsync(SavedCards.ToList());
+            SavedCards.Clear();
+         
+        }
+        public static async Task DeleteAllCards()
+        {
+            SavedCards.Clear();
+            await SaveCardListToJsonAsync(SavedCards.ToList());
+        }
+
+        
+        #endregion
         public static void SaveDataPath(string key, string value)
         {
             FilePaths.Add(key, value);

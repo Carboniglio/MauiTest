@@ -38,6 +38,11 @@
          Clicked="OnSearchCardClicked"
          HorizontalOptions="Fill" />
             <Button
+        x:Name="ShowCards"
+        Text="ShowCards" 
+        Clicked="ShowCardsClicked"
+        HorizontalOptions="Fill" />
+            <Button
          x:Name="LoginBtn"
          Text="Login Test "  
          Clicked="OnChangeLoginPageClicked"

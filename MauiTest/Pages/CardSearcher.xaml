@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiTest.CardSearcher"
+             Title="CardSearcher">
+    <VerticalStackLayout Padding="20">
+        <Entry 
+            x:Name="CardNameEntry" 
+            Placeholder="find a card " 
+            Completed="OnEntryCompleted"
+            />
+        <Button 
+            Text="Cerca Carta"
+            Clicked="OnSearchClicked"
+            />
+        <Label
+            x:Name="CardTitle"
+            FontSize="20" 
+            HorizontalOptions="Center" 
+            />
+        <Image
+            x:Name="CardImage"
+            WidthRequest="300"
+            HeightRequest="420" 
+            />
+        <Button 
+            x:Name="AddCardBtn"
+            Text="Add To Collection"
+            Clicked="OnAddClicked"
+            IsVisible="False"
+            />
+    </VerticalStackLayout>
+</ContentPage>

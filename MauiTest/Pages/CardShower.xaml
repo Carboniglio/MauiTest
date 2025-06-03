@@ -2,31 +2,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiTest.CardShower"
-             Title="CardShower">
-    <VerticalStackLayout Padding="20">
-        <Entry 
-            x:Name="CardNameEntry" 
-            Placeholder="find a card " 
-            />
-        <Button 
-            Text="Cerca Carta"
-            Clicked="OnSearchClicked"
-            />
-        <Label
-            x:Name="CardTitle"
-            FontSize="20" 
-            HorizontalOptions="Center" 
-            />
-        <Image
-            x:Name="CardImage"
-            WidthRequest="300"
-            HeightRequest="420" 
-            />
-        <Button 
-            x:Name="AddCardBtn"
-            Text="Add To Collection"
-            Clicked="OnAddClicked"
-            IsVisible="False"
-            />
-    </VerticalStackLayout>
+             Title="Carte Salvate"
+             BackgroundColor="White">
+
+    <CollectionView x:Name="CardsCollection"
+                    ItemsSource="{Binding}"
+                    Margin="10"
+                    SelectionMode="None">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Border Stroke="LightGray"
+                        StrokeThickness="1"
+                        BackgroundColor="White"
+                        Padding="10"
+                        Margin="0,5"
+                        StrokeShape="RoundRectangle 10">
+
+                    <VerticalStackLayout Spacing="10">
+                        <Image Source="{Binding CardUrl}"
+                               HeightRequest="200"
+                               Aspect="AspectFit" />
+                        <Label Text="{Binding Cardname}"
+                               FontSize="18"
+                               HorizontalOptions="Center"
+                               TextColor="Black" />
+                    </VerticalStackLayout>
+
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
